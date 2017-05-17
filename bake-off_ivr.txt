@@ -1,0 +1,29 @@
+Setup on partition "Employee", account number "mrwtest"
+
+main ivr
+	schedule
+		business hours
+			1 - support
+			2 - shipping
+			4 - directory (name)
+			5 - directory (extension)
+			0 - reception (user)
+			failure - user
+		others
+			1 - support
+			0 - reception (user direct to vm)
+			failure - user direct to vm
+
+support ivr
+	schedule
+		business hours
+			user group
+		other
+			user direct to vm
+
+shipping ivr
+	schedule
+		business hours (pm) - device group sim, hangup on failure
+		business hours (mid-dau) - device group seq, hangup on failure
+		business hours (am) - device group first avail, hangup on failure
+		other - user direct to vm

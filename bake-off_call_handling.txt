@@ -1,0 +1,63 @@
+Setup on partition "Employee", account number "mrwtest", user "mrwtest1" 
+
+Call Screening:
+	Forward To: 18019664727
+	Anonymous: Block with message
+	Toll-free: Voicemail
+	All other: Allow
+	18005315000: Block
+	18019687247: Forward
+
+Call Handling schedules:
+	Default:
+		Do not disturb DISABLED
+		Forward All
+			18005315000
+
+	Star Wars Day
+		Custom date: 
+			2017-05-04
+		Do not disturb ENABLED
+		Ring Phone
+			No Answer: VM after 20 seconds
+			Busy: VM
+			Out of service: VM
+
+	Non business hours on-call
+		Custom dates: 
+			2017-05-22 thru 2017-05-26, 00:00 - 08:00
+			2017-05-22 thru 2017-05-26, 17:00 - 23:59
+			2017-05-21
+			2017-05-26
+		Do not disturb DISABLED
+		Sim Ring
+			18019664727
+			(all devices)
+			VM after 20 seconds
+
+	Business Hours on-call
+		Custom dates:
+			2017-05-22 thru 2017-05-26, 08:00 - 17:00
+		Do not disturb DISABLED
+		Find Me
+			(all devices) for 20 seconds
+			18019664727 for 20 seconds
+			VM
+
+	Christmas
+		Custom date:
+			2017-12-25
+		Do not disturb DISABLED
+		Forward All
+			18005315000
+
+	Business Hours
+		Weekly
+			Sun, Sat: 12:00 - 12:01
+			Mon, Tue, Wed, Thu, Fri: 08:00 - 17:00
+		Do not disturb DISABLED
+		Ring Phone
+			No Answer: VM after 20 seconds
+			Busy: Busy
+			Out of service: Forward to 18005315000
+
