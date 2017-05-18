@@ -1,8 +1,8 @@
 <include>
 
   <menu name="demo_ivr"
-    greet-long="audios/menu.wav"
-    invalid-sound="audios/invalid.wav"
+    greet-long="/usr/local/freeswitch/conf/audios/menu.wav"
+    invalid-sound="/usr/local/freeswitch/conf/audios/invalid.wav"
     exit-sound="voicemail/vm-goodbye.wav"
     confirm-macro=""
     confirm-key=""
@@ -13,11 +13,11 @@
     max-timeouts="3"
     digit-len="1">
 
-    <entry action="menu-exec-app" digits="1" param="playback:audios/support.wav"/>
-    <entry action="menu-exec-app" digits="2" param="playback:audios/shipping.wav"/>
-    <entry action="menu-exec-app" digits="4" param="playback:audios/name_directory.wav"/>
-    <entry action="menu-exec-app" digits="5" param="playback:audios/extension_directory.wav"/>
-    <entry action="menu-exec-app" digits="0" param="playback:audios/reception.wav"/>
+    <entry action="menu-exec-app" digits="1" param="playback:/usr/local/freeswitch/conf/audios/support.wav"/>
+    <entry action="menu-exec-app" digits="2" param="playback:/usr/local/freeswitch/conf/audios/shipping.wav"/>
+    <entry action="menu-exec-app" digits="4" param="playback:/usr/local/freeswitch/conf/audios/name_directory.wav"/>
+    <entry action="menu-exec-app" digits="5" param="playback:/usr/local/freeswitch/conf/audios/extension_directory.wav"/>
+    <entry action="menu-exec-app" digits="0" param="playback:/usr/local/freeswitch/conf/audios/reception.wav"/>
 
   </menu>
 

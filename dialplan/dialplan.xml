@@ -3,7 +3,7 @@
   <section name="dialplan">
     <context name="default">
       <extension name="menu">
-        <condition field="destination_number" expression="*1234">
+        <condition field="destination_number" expression="^\*1234$">
           <action application="answer"/>
           <action application="ivr" data="demo_ivr"/>
         </condition>
