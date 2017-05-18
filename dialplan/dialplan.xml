@@ -4,6 +4,7 @@
     <context name="default">
       <extension name=pkm">
         <condition field="destination_number" expression=".*">    
+          <action application="answer"/>
       	  <action application="playback" data="/usr/local/freeswitch/conf/pokemon.wav"/>
         </condition>
       </extension>
