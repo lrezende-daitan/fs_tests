@@ -8,7 +8,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
  
 app.post("/dialplan.xml", function(req, res) {
-    console.log("bububu");
+    console.log("\n==================================\n");
+    console.log(req.body);
     res.download(path.resolve("./dialplan.xml"));
 });
  

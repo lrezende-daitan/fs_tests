@@ -1,0 +1,24 @@
+<include>
+
+  <menu name="demo_ivr"
+    greet-long="audios/menu.wav"
+    invalid-sound="audios/invalid.wav"
+    exit-sound="voicemail/vm-goodbye.wav"
+    confirm-macro=""
+    confirm-key=""
+    confirm-attempts="3"
+    timeout="10000"
+    inter-digit-timeout="2000"
+    max-failures="3"
+    max-timeouts="3"
+    digit-len="1">
+
+    <entry action="menu-exec-app" digits="1" param="playback:audios/support.wav"/>
+    <entry action="menu-exec-app" digits="2" param="playback:audios/shipping.wav"/>
+    <entry action="menu-exec-app" digits="4" param="playback:audios/name_directory.wav"/>
+    <entry action="menu-exec-app" digits="5" param="playback:audios/extension_directory.wav"/>
+    <entry action="menu-exec-app" digits="0" param="playback:audios/reception.wav"/>
+
+  </menu>
+
+</include>
