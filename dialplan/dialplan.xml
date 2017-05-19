@@ -14,25 +14,25 @@
           <action application="playback" data="/usr/local/freeswitch/conf/audios/support.wav"/>
         </condition>
       </extension>
-      <extension name="support">
+      <extension name="shipping">
         <condition field="destination_number" expression="^\*5002$">
           <action application="answer"/>
           <action application="playback" data="/usr/local/freeswitch/conf/audios/shipping.wav"/>
         </condition>
       </extension>
-      <extension name="support">
+      <extension name="name_directory">
         <condition field="destination_number" expression="^\*5004$">
           <action application="answer"/>
           <action application="playback" data="/usr/local/freeswitch/conf/audios/name_directory.wav"/>
         </condition>
       </extension>
-      <extension name="support">
+      <extension name="extension_directory">
         <condition field="destination_number" expression="^\*5005$">
           <action application="answer"/>
           <action application="playback" data="/usr/local/freeswitch/conf/audios/extension_directory.wav"/>
         </condition>
       </extension>
-      <extension name="support">
+      <extension name="reception">
         <condition field="destination_number" expression="^\*2000$">
           <action application="answer"/>
           <action application="playback" data="/usr/local/freeswitch/conf/audios/reception.wav"/>
@@ -45,14 +45,14 @@
         </condition>
       </extension>
       <extension name="call">
-        <condition field="destination_number" expression="^1[0-9][0-9][0-9]$">    
+        <condition field="destination_number" expression="^10[01][0-9]$">
           <action application="bridge" data="user/${destination_number}"/>
           <action application="answer"/>
           <action application="sleep" data="1000"/>
           <action application="bridge" data="loopback/app=voicemail:default ${domain_name} ${dialed_extension}"/>
         </condition>
       </extension>
-      <extension name="call">
+      <extension name="voicemail">
         <condition field="destination_number" expression=".*">    
           <action application="bridge" data="loopback/app=voicemail:default ${domain_name} ${dialed_extension}"/>
         </condition>
