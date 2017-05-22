@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document type="freeswitch/xml">
+  <section name="dialplan">
+    <context name="default">
+      <extension name="menu">
+        <condition field="destination_number" expression="^\*5000$">
+          <action application="answer"/>
+          <action application="ivr" data="demo_ivr"/>
+        </condition>
+      </extension>
+    </context>
+  </section>
+</document>

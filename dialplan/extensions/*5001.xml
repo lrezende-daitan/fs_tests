@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document type="freeswitch/xml">
+  <section name="dialplan">
+    <context name="default">
+      <extension name="support">
+        <condition field="destination_number" expression="^\*5001$">
+          <action application="answer"/>
+          <action application="playback" data="/usr/local/freeswitch/conf/audios/support.wav"/>
+        </condition>
+      </extension>
+    </context>
+  </section>
+</document>

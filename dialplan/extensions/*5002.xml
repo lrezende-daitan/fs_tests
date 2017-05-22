@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document type="freeswitch/xml">
+  <section name="dialplan">
+    <context name="default">
+      <extension name="shipping">
+        <condition field="destination_number" expression="^\*5002$">
+          <action application="answer"/>
+          <action application="playback" data="/usr/local/freeswitch/conf/audios/shipping.wav"/>
+        </condition>
+      </extension>
+    </context>
+  </section>
+</document>
