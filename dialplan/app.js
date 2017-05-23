@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
  
 app.post("/dialplan.xml", function(req, res) {
-    "use strict";
     let requestInfo = req.body;
     console.log("\n==================================\n");
     console.log("Core-UUID: " + requestInfo["Core-UUID"]);
