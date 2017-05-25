@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
  
-app.post("/dialplan.xml", function(req, res) {
+app.post("/dialplan", function(req, res) {
     let requestInfo = req.body;
     console.log("\n==================================\n");
     console.log("Core-UUID: " + requestInfo["Core-UUID"]);
@@ -18,6 +18,21 @@ app.post("/dialplan.xml", function(req, res) {
     let filePath = "./extensions/" + requestInfo["Caller-Destination-Number"] + ".xml";
     if(!fs.existsSync(filePath)) {
       filePath = "./extensions/generic.xml";
+    }
+    console.log("Returning " + filePath);
+    return res.download(path.resolve(filePath));
+});
+
+app.post("/config", function(req, res) {
+    let requestInfo = req.body;
+    console.log("\n==================================\n");
+    console.log(requestInfo);
+    if(requestInfo.section !== "configuration") {
+      return res.status(400).send("bad section");
+    }
+    let filePath = "./configurations/" + requestInfo.key_value + ".xml";
+    if(!fs.existsSync(filePath)) {
+      return res.status(404).send("Not found")
     }
     console.log("Returning " + filePath);
     return res.download(path.resolve(filePath));
