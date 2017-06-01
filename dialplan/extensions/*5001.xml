@@ -4,8 +4,8 @@
     <context name="default">
       <extension name="support">
         <condition field="destination_number" expression="^\*5001$">
-          <action application="answer"/>
           <action application="playback" data="/usr/local/freeswitch/conf/audios/support.wav"/>
+          <action application="callcenter" data="support@default"/>
         </condition>
       </extension>
     </context>

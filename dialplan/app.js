@@ -1,3 +1,4 @@
+"use strict";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -28,18 +29,48 @@ app.post("/config", function(req, res) {
     console.log("\n==================================\n");
     console.log(requestInfo);
     if(requestInfo.section !== "configuration") {
-      return res.status(400).send("bad section");
+      return returnNotFound(res);
     }
-    let filePath = "./configurations/" + requestInfo.key_value + ".xml";
-    if(!fs.existsSync(filePath)) {
-      return res.status(404).send("Not found")
+    switch(requestInfo.key_value) {
+      case "callcenter.conf":
+        return callcenterRequest(req, res)
+      default:
+        return genericConfigRequest(req, res)
     }
-    console.log("Returning " + filePath);
-    return res.download(path.resolve(filePath));
 });
  
 var server = app.listen(3000, function () {
     console.log("Listening on port %s...", server.address().port);
 });
 
+function genericConfigRequest(req, res) {
+    let requestInfo = req.body;
+    let filePath = "./configurations/" + requestInfo.key_value + ".xml";
+    if(!fs.existsSync(filePath)) {
+      return returnNotFound(res);
+    }
+    return returnFile(res, filePath);
+}
 
+function callcenterRequest(req, res) {
+    let filePath = '';
+    let requestInfo = req.body;
+    if(requestInfo['Event-Name'] == "REQUEST_PARAMS") {
+      filePath = "./callcenter_configs/" + requestInfo['CC-Queue'] + ".xml";
+    } else {
+      filePath = "./configurations/callcenter.conf.xml";
+    }
+    if(!fs.existsSync(filePath)) {
+      return returnNotFound(res);
+    }
+    return returnFile(res, filePath);
+}
+
+function returnFile(res, filePath) {
+    console.log("Returning " + filePath);
+    return res.download(path.resolve(filePath));
+}
+
+function returnNotFound(res) {
+  return res.download(path.resolve("./not-found.xml"));
+}
