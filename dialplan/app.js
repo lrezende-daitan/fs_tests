@@ -34,6 +34,8 @@ app.post("/config", function(req, res) {
     switch(requestInfo.key_value) {
       case "callcenter.conf":
         return callcenterRequest(req, res)
+      case "ivr.conf":
+        return ivrRequest(req, res)
       default:
         return genericConfigRequest(req, res)
     }
@@ -46,6 +48,20 @@ var server = app.listen(3000, function () {
 function genericConfigRequest(req, res) {
     let requestInfo = req.body;
     let filePath = "./configurations/" + requestInfo.key_value + ".xml";
+    if(!fs.existsSync(filePath)) {
+      return returnNotFound(res);
+    }
+    return returnFile(res, filePath);
+}
+
+function ivrRequest(req, res) {
+    let filePath = '';
+    let requestInfo = req.body;
+    if(requestInfo['Event-Name'] == "REQUEST_PARAMS") {
+      filePath = "./ivr_menus/" + requestInfo['Menu-Name'] + ".xml";
+    } else {
+      return returnNotFound(res);
+    }
     if(!fs.existsSync(filePath)) {
       return returnNotFound(res);
     }
